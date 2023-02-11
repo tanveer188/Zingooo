@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <script src="https://kit.fontawesome.com/eabcac7a26.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav>
+    <div class="navbar">
+      <img src="static/images/logo.png" alt="" srcset="">
+    </div>
+  </nav>
+  <div class="mainBox">
+    {% for key in title %}
+    <form method="get" id="viewnotes{{forloop.counter}}" action="/pdfshow">
+      <input type="hidden" name="id" id="id" value="{{key.f_location}}" />
+      <div class="container" id="container{{forloop.counter}}">
+        <div class="card">
+          <div class="Notesicon">
+            <i class="fa-solid fa-note-sticky"></i>
+          </div>
+          <p class="subName">{{key}}</p>
+        </div>
+      </div>
+    </form>
+    {% endfor%}
+  </div>
+  <footer>
+    <div class="footer">
+      <div class="AttPage">
+        <i class="fa-solid fa-person-circle-check"></i>
+        <span>Coming...</span>
+      </div>
+      <div class="NotesPage">
+        <i class="fa-solid fa-note-sticky ActivePage"></i>
+          <span>Notes</span>
+      </div>
+    </div>
+  </footer>
+  <script src="https://kit.fontawesome.com/ee763580dc.js" crossorigin="anonymous"></script>
+</body>
+
+<script type="text/javascript" charset="utf-8">
+  {% for key in title %}
+  let viewnotes{{ forloop.counter }} =  document.getElementById("viewnotes{{forloop.counter}}");
+  let container{{ forloop.counter }} =  document.getElementById("container{{forloop.counter}}");
+  container{{forloop.counter }}.addEventListener('click', () => {
+    viewnotes{{forloop.counter }}.submit()
+  })
+  {% endfor %}
+</script>
+
+</html>

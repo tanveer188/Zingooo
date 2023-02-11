@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>HTML</title>
+  
+  <!-- HTML -->
+  
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="static/css/notes.css">
+</head>
+  
+<body>
+  
+  <div id="viewer"></div>
+  <script type="text/javascript" src="https://cloudpdf.io/viewer.min.js"></script>
+  <script>
+    const config = {
+      documentId: '{{ id }}',
+    };
+    CloudPDF(config, document.getElementById('viewer')).then((instance) => {
+  
+    });
+  </script>
+</body>
+</html>
