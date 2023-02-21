@@ -1,4 +1,4 @@
-from django.db import models
+from djongo.db import models
 
 # Create your models here.
 class NotesDb(models.Model):
