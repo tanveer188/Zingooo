@@ -1,4 +1,4 @@
 from django.contrib import admin
-from notesapp.models import NotesDb
+from notesapp.models import Zingooodb
 # Register your models here.
-admin.site.register(NotesDb)
+admin.site.register(Zingooodb)
