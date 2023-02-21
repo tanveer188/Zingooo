@@ -88,9 +88,9 @@ DATABASES = {
         'default': {
         'ENGINE': 'djongo',
         'NAME': 'Zingooodb',
-        'HOST': 'mongodb+srv://tanveerh188:VkRQS3AJsLEfvun@tanveerh188.z1uszb2.mongodb.net/?retryWrites=true&w=majority',
-        'USER': 'tanveerh188',
-        'PASSWORD': 'VkRQS3AJsLEfvun',
+        'HOST': 'mongodb+srv://vercel-admin-user@admin:vercel-admin-user@tanveerh188.z1uszb2.mongodb.net/?retryWrites=true&w=majority',
+        'USER': 'vercel-admin-user@admin',
+        'PASSWORD': 'vercel-admin-user',
     }
 }
 
