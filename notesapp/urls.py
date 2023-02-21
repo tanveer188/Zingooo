@@ -18,7 +18,6 @@ from django.urls import path,include
 from notesapp import views
 
 urlpatterns = [
-    path('', views.allnotesshow,name="NotesHome"),
     path('allnotesshow', views.allnotesshow,name="NotesHome"),
     path('pdfshow',views.pdfshow,name="pdfshow")
 ]
