@@ -76,10 +76,25 @@ WSGI_APPLICATION = 'zingooo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
+
+
+
+DATABASE = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        "CLIENT": {
+          "name": "Zingooodb",
+          "host": "mongodb+srv://tanveerh188:VkRQS3AJsLEfvun@tanveerh188.z1uszb2.mongodb.net/?retryWrites=true&w=majority",
+          "username": "tanveerh188",
+          "password": "VkRQS3AJsLEfvun",
+          "authMechanism": "SCRAM-SHA-1",
+        }, 
     }
 }
 
