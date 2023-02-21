@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login or Register</title>
+  <!-- CUSTOM CSS -->
+  <link rel="stylesheet" href="static/css/login.css">
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <div class="forms-container">
+      <div class="signin-signup">
+        <form action="Attandance" method="post" class="sign-in-form">
+          <h2 class="title">Login</h2>
+          {% csrf_token %}
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" name="email" autocomplete="username" placeholder="Email or Enrollment No" required="yes">
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" name="password" autocomplete="current-password" placeholder="Juno Password" id="password" required="yes">
+            <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+          </div>
+          <p class="social-text">{{id}}</p>
+          <input type="submit" value="Sign in" class="btn solid">
+          <a class="pass" href="/allnotesshow">View Python Notes</a>
+        </form>
+        
+      </div>
+    </div>
+    <div class="panels-container">
+      <div class="panel left-panel">
+        <div class="content">
+          <h3>We are not storing password feel free to try</h3>
+        </div>
+        <img src="static/images/bg.svg" class="image" alt="">
+      </div>
+
+      
+    </div>
+  </div>
+
+  <script src="static/script/main.js"></script>
+
+
+</body>
+</html>

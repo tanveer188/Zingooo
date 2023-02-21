@@ -13,7 +13,7 @@
 <body>
   <nav>
     <div class="navbar">
-      <img src="static/images/logo.png" alt="" srcset="">
+      <img class="notes" src="static/images/logo.png" alt="" srcset="">
     </div>
   </nav>
   <div class="mainBox">
@@ -33,12 +33,12 @@
   </div>
   <footer>
     <div class="footer">
-      <div class="AttPage">
+      <div class="AttPage AttRediPage">
         <i class="fa-solid fa-person-circle-check"></i>
-        <span>Coming...</span>
+        <span>Attandance</span>
       </div>
-      <div class="NotesPage">
-        <i class="fa-solid fa-note-sticky ActivePage"></i>
+      <div class="NotesPage notes ActivePage">
+        <i class="fa-solid fa-note-sticky "></i>
           <span>Notes</span>
       </div>
     </div>
@@ -54,6 +54,23 @@
     viewnotes{{forloop.counter }}.submit()
   })
   {% endfor %}
+
+
+  // redirect 
+  let notes = document.getElementsByClassName("notes")
+  Notesarray = Array.from(notes)
+  Notesarray.forEach(element => {
+    element.addEventListener("click",()=>{
+      window.location.href = "/allnotesshow"
+    })
+  });
+  let AttRediPage = Array.from(document.getElementsByClassName("AttRediPage"))
+
+  AttRediPage.forEach(element => {
+    element.addEventListener("click",()=>{
+      window.location.href = "/login"
+    })
+  });
 </script>
 
 </html>

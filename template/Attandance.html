@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="static/css/Attandance.css">
+    <script src="https://kit.fontawesome.com/eabcac7a26.js" crossorigin="anonymous"></script>
+    <style>
+    {% for i in content %}
+    .ShowTotalAtt{{forloop.counter}}{
+      height: {{i.height}}px;
+    }
+    {% endfor %}
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="navbar">
+                <img class="notes" src="static/images/logo.png" alt="" srcset="">
+            </div>
+            <div class="Shedule">
+                {% for row in timetable %}
+                <div class="sheitem">
+                    <h4>{{row.subShortName}}</h4>
+                    <p>{{row.time}}</p>
+                    <span class="check">{{row.todayatt}}</p>
+                </div>
+                {% endfor %}
+                
+            </div>
+    </header>
+    </nav>
+    <div class="mainBox">
+        {% for i in content %}
+        <div class="container" id="sub{{forloop.counter}}">
+          <div class="uppercard" >
+            <div class="card">
+                <div class="circle-border" id="circle-border{{forloop.counter}}">
+                    <div class="circle">
+                        <p>{{i.percentage}}</p>
+                    </div>
+                </div>
+                <p class="subName">{{i.subject}}</p>
+            </div>
+            {% if i.Worry %}
+            <div class="todayAtt">
+                <div class="icons">
+                    <p >Stike to 75 = </p>
+                    <p class="cross" >  {{i.howPerce75}}</p>
+                </div>
+                <div class="icons">
+                    <p>Skipable Clases =</p>
+                    <p class="check">  {{i.SkipClasses}}</p>
+                </div>
+            </div>
+            {% endif %}
+            </div>
+            <div class="AttanTable">
+              <table border="0">
+                <thead>
+                  <tr>
+                    <td>Date</td>
+                    <td>Attandance</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for j in i.totalAtt %}
+                  <tr>
+                    <td>{{j.Date}}</td>
+                    <td><span class="check" >{{j.Aorp}} </span></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+    <footer>
+        <div class="footer">
+            <div class="AttPage AttRediPage ActivePage">
+                <i class="fa-solid fa-person-circle-check"></i>
+                <span>Attandance</span>
+            </div>
+            <div class="NotesPage notes">
+                <i class="fa-solid fa-note-sticky"></i>
+                <span>Notes</span>
+            </div>
+        </div>
+    </footer>
+    <script>
+        let notes = document.getElementsByClassName("notes")
+        Notesarray = Array.from(notes)
+        Notesarray.forEach(element => {
+            element.addEventListener("click", () => {
+                window.location.href = "/allnotesshow"
+            })
+        });
+        let AttRediPage = Array.from(document.getElementsByClassName("AttRediPage"))
+
+        AttRediPage.forEach(element => {
+            element.addEventListener("click", () => {
+  
+            })
+        });
+      {% for i in content%}
+      let circle_border{{forloop.counter}} = document.getElementById("circle-border{{forloop.counter}}")
+      window.addEventListener("load",()=>{
+        circle_border{{forloop.counter}}.style.background = "conic-gradient(var(--primary) {{i.border}}deg, #d9d9d970 {{i.border}}deg"
+        });
+        let sub{{forloop.counter}} = document.getElementById("sub{{forloop.counter}}")
+        sub{{forloop.counter}}.addEventListener("click",()=>{
+        sub{{forloop.counter}}.classList.toggle("ShowTotalAtt")
+        sub{{forloop.counter}}.classList.toggle("ShowTotalAtt{{forloop.counter}}")
+       
+      });
+      {% endfor %}
+      </script>
+</body>
+
+</html>

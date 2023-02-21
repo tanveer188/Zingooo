@@ -10,6 +10,12 @@ def pdfshow(request):
     id = request.GET.get('id')
     context = {'id': id}
     return render(request,'notes.html',context)
-  
+
+def Attandance(request):
+  context = {
+    id:'id'
+  }
+  return render(request,'Attandance.html',context)
+
 def page_not_found_view(request, exception):
     return render(request, 'notes.html', status=404)

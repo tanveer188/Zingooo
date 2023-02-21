@@ -1,0 +1,265 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  :root {
+    --primary: #4393de;
+    --bg-color: white;
+  }
+  body {
+    padding: 1rem;
+  }
+  
+  .navbar {
+    background-color: #d9d9d9;
+    padding: 0.31rem;
+    width: 100%;
+    height: 3rem;
+    box-shadow: 0px 1px 10px #999;
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+  
+  .navbar > a > img {
+    margin-left: 2rem;
+    mix-blend-mode: color-burn;
+  }
+  
+  .Shedule {
+    width: 100%;
+    background: #F3F3F3;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding: 0.7rem 1.2rem;
+    border-radius: 0.7rem;
+  }
+  .Shedule > .sheitem {
+    background: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+  }
+  .sheitem > span{
+    align-self: center
+  }
+  
+  .mainBox {
+      margin: 1.2rem 0px 3.2rem 0rem;
+    display: flex;
+    justify-content: center;
+    flex-grow: 0;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .container {
+    transition: height 0.7s ;
+    background: #d9d9d970;
+    width: 23.188rem;
+    -webkit-height:23.188rem;
+    min-height: 9.85rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden
+  }
+  .container:last-child{
+    margin-bottom: 4.4rem;
+  }
+  .uppercard {
+    justify-self: flex-start;
+    min-height: 9.85rem;
+    width: 23.188rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card {
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .circle {
+    text-align: center;
+    width: 4.938rem;
+    height: 4.813rem;
+    border-radius: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .circle-border {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 5.563rem;
+    height: 5.563rem;
+    border-radius: 100%;
+  }
+  
+  .subName {
+    font-family: "Inter";
+    text-align: center;
+    width: 12.313rem;
+  }
+  .todayAtt {
+    background: #d9d9d990;
+    min-height: 32px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 0rem 0rem 1rem 1rem;
+  }
+  .icons {
+    display: flex;
+    justify-content: space-around;
+  }
+  .icons > p:nth-child(2){
+    padding: 0px 4px ;
+  }
+  .check {
+    color: var(--primary);
+  }
+  .cross {
+    color: #de4343;
+  }
+  
+  .AttanTable{
+    transition: height 0.7s, position 2s linear;
+    margin-top: 0.7rem;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    left: -200vw;
+    z-index: -10;
+  text-align: center;
+  border: none;
+  }
+  .AttanTable table {
+  border-collapse: collapse;
+  width: 100%;
+  }
+  .AttanTable > table > thead{
+  background: var(--primary);
+  color: var(--bg-color);
+  font-weight: bold;
+  }
+  .AttanTable > table th,td{
+  padding: 0.65rem 2.4rem ;
+  }
+  .AttanTable tbody td{
+  border-bottom: 2px solid gray;
+  }
+  .AttanTable > table > tbody > tr:nth-child(even){
+  background: #d9d9d9;
+  }
+  
+  
+  .ShowTotalAtt > .AttanTable {
+    visibility: visible;
+    left: 0;
+    position: relative;
+    z-index: 3;
+    opacity: 1;
+  }
+  .ShowTotalAtt .todayAtt{
+    background: inherit;
+  }
+  
+  
+  .footer {
+    background-color: #d9d9d9;
+    padding: 0.31rem;
+    width: 100%;
+    height: 3rem;
+    box-shadow: 0px 1px 10px #999;
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+  }
+  .footer > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .ActivePage {
+    color: var(--primary);
+  }
+  
+  @media only screen and (max-width: 390px) {
+    .mainBox{
+      margin: 1.2rem 0px;
+    }
+    .container {
+      width: 20.188rem;
+      height: 9.925rem;
+    }
+    .uppercard{
+      width: 20.188rem;
+      height: 9.925rem;
+    }
+    .AttanTable > table th,td{
+  padding: 0.65rem 1.2rem ;
+  }
+    .Shedule {
+      font-size: 90%;
+      padding: 0.4rem 0.3rem;
+      border-radius: 0.3rem;
+    }
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: #1e1e1e;
+      color: white;
+    }
+    .navbar {
+      background: #2d2d30;
+      box-shadow: 0px 1px 8px #252526 !important;
+    }
+    .navbar > img {
+      filter: invert(100%);
+    }
+    .Shedule {
+      color: white;
+      background: #252526;
+    }
+    .container {
+      background: #2d2d30;
+    }
+    .circle {
+      background: #2d2d30;
+    }
+    .todayAtt {
+      background: #3e3e42;
+    }
+    .AttanTable > table > thead{
+      color: white;
+    }
+    .AttanTable > table > tbody > tr:nth-child(even){
+      background-color: #3e3e42;
+    }
+    .ShowTotalAtt .todayAtt {
+      background: #2d2d30 ;
+    }
+    .footer {
+      background: #2d2d30;
+      box-shadow: 0px 1px 8px #252526 !important;
+    }
+  }
+  
