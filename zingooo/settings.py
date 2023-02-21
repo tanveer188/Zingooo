@@ -84,15 +84,29 @@ WSGI_APPLICATION = 'zingooo.wsgi.application'
 #}
 
 
+#DATABASES = {
+#        'default': {
+#       'ENGINE': 'djongo',
+#        'NAME': 'Zingooodb',
+#        'HOST': 'mongodb+srv://tanveerh188:VkRQS3AJsLEfvun@tanveerh188.z1uszb2.mongodb.net/?retryWrites=true&w=majority',
+#        'USER': 'tanveerh188',
+#        'PASSWORD': 'VkRQS3AJsLEfvun',
+#    }
+#}
+
+
+
 DATABASES = {
         'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'Zingooodb',
-        'HOST': 'mongodb+srv://tanveerh188:VkRQS3AJsLEfvun@tanveerh188.z1uszb2.mongodb.net/?retryWrites=true&w=majority',
-        'USER': 'tanveerh188',
-        'PASSWORD': 'VkRQS3AJsLEfvun',
-    }
+            'ENGINE': 'djongo',
+            'NAME': 'Tanveerh188',
+            'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host': 'mongodb+srv://tanveerh188:VkRQS3AJsLEfvun@tanveerh188.z1uszb2.mongodb.net/?retryWrites=true&w=majority'
+            }  
+        }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
