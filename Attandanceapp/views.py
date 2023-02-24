@@ -7,6 +7,21 @@ def convert24(time):
     # Format the datetime object into a 24-hour time string
     return t.strftime('%H:%M:%S')
  
+def SkipClassesFinder(total,present):
+  for j in range(0,120):
+    SkipClasses = ((present)/(total+j))*100
+    if SkipClasses < 75 :
+      SkipClasses = j-1
+      break
+  return int(SkipClasses)
+
+def howPerce75Finder(total,present):
+  for j in range(0,120):
+    howPerce75 = ((present+j)/(total+j))*100
+    if howPerce75 > 75 :
+      howPerce75 = j
+      break
+  return int(howPerce75)
 
 # Create your views here.
 def login(request):
@@ -24,30 +39,29 @@ def submit(request):
     password = request.POST.get('password')
     url = 'https://erp.meu.edu.in/j_security_check'
     myobj = {'j_username': email,'j_password': password}
-    try:
-      response = requests.post(url, data = myobj,verify=False)
-    except:
-      context = {
-          "id" : "Internal Server Error",
-          }
-      return render(request,"login.html",context)
-    soup = BeautifulSoup(response.content,'html5lib')
-    table = soup.find("title")
-    #table = ["Student Home"]
-    try:
-      for i in table:
-        if(i == "Student Home"):
-          apiurl = 'https://erp.meu.edu.in/getSubjectOnChangeWithSemId1.json?termId=0'
-          #apiurl = "http://127.0.0.1:8000/static/att.html"
-          timtableapi = "https://erp.meu.edu.in/getTodaysScheduleForStudentLoggedIn.json?date=Feb%2017,2023"
-          #timtableapi = "http://127.0.0.1:8000/static/stdtimtable.html"
-          subject,present,absent,total,percentage,howPerce75,SkipClasses,arr,arr2 = 0,0,0,0,0,0,0,[],[]
-          content = []
-          timetable = []
-          todayAttArr = []
-          with requests.Session() as s:
-            #make request to erp.meu to login
-            s.post(url, data = myobj,verify=False)
+    with requests.Session() as s:
+        #table = ["Student Home"]
+      try:
+        #make request to erp.meu to login
+        response = s.post(url, data = myobj,verify=False)
+      except:
+        context = {
+            "id" : "Internal Server Error",
+            }
+        return render(request,"login.html",context)
+      soup = BeautifulSoup(response.content,'html5lib')
+      table = soup.find("title")
+      try:
+        for i in table:
+          if(i == "Student Home"):
+            apiurl = 'https://erp.meu.edu.in/getSubjectOnChangeWithSemId1.json?termId=0'
+            #apiurl = "http://127.0.0.1:8000/static/att.html"
+            timtableapi = "https://erp.meu.edu.in/getTodaysScheduleForStudentLoggedIn.json?date=Feb%2017,2023"
+            #timtableapi = "http://127.0.0.1:8000/static/stdtimtable.html"
+            subject,present,absent,total,percentage,howPerce75,SkipClasses,arr,arr2 = 0,0,0,0,0,0,0,[],[]
+            content = []
+            timetable = []
+            todayAttArr = []
             #fetching all th atendence data from mandsaur university
             x = s.get(apiurl,verify=False)
             z = s.get(timtableapi,verify=False)
@@ -61,7 +75,7 @@ def submit(request):
               startTimeHM = value["startTimeHM"]
               timetabletemp = {
                 "subShortName":subShortName,
-                "time":time.replace("AM","").replace("PM",""),
+                "time":time,
                 "startTimeHM":startTimeHM,
                 "todayatt":"",
               }
@@ -92,19 +106,11 @@ def submit(request):
                 #if percantage is greater than 75 then calculating how many classes you can skip and making howto75 0
                 if percentage > 75 :
                   howPerce75 = 0
-                  for j in range(0,120):
-                    SkipClasses = ((present)/(total+j))*100
-                    if SkipClasses < 75 :
-                      SkipClasses = j-1
-                      break
+                  SkipClasses = SkipClassesFinder(total,present)
                 #if percentage is not geater than 75 then calculating how many days it takes to make it 75 and making skipable clases 0
                 else:
                   SkipClasses = 0
-                  for j in range(0,120):
-                    howPerce75 = ((present+j)/(total+j))*100
-                    if howPerce75 > 75 :
-                      howPerce75 = j
-                      break
+                  howPerce75 = howPerce75Finder(total,present)
                 #if total is equal to zero then making percentage 0 and how to 75 0
               elif subjectCategory == "VOCATIONAL_SUBJECT":
                 Worry = False
@@ -153,7 +159,7 @@ def submit(request):
                      todayAtt = 'N/A'
                   #3.it is a special class then there is n0o shedule 
               else:
-                todayAtt = "NO SHEDULE"
+                todayAtt = "N/A"
               # print(arr[len(arr)-11],arr[len(arr)-10],arr[len(arr)-8],arr[len(arr)-5],arr[len(arr)-4])
               contextTemp = {
                 "subject":subject,
@@ -185,33 +191,40 @@ def submit(request):
               contextTemp["height"] = (((len(contextTemp["totalAtt"])+1)*2.57864375)+10.849625)*16
               content.append(contextTemp)
   
-          todayAttArr.sort(key = lambda x: convert24(x["todayAttTime"]))
-          print(len(timetable),len(todayAttArr))
-          try:
-            for index in range(0,len(todayAttArr)):
-              timetable[index]["todayatt"] = todayAttArr[index]["todayAtt"]
+            todayAttArr.sort(key = lambda x: convert24(x["todayAttTime"]))
+            print(len(timetable))
+            print(len(todayAttArr))
+            print("\n\n\n")
+            try:
+              indexj= 0
+              for index in range(0,len(timetable)+1):
+                if indexj >= len(todayAttArr):
+                  break
+                elif timetable[index]["time"] ==todayAttArr[indexj]["todayAttTime"]:
+                  timetable[index]["time"] = timetable[index]["time"].replace("AM","").replace("PM","")
+                  timetable[index]["todayatt"] = todayAttArr[indexj]["todayAtt"]
+                  indexj+=1
+                else:
+                  timetable[index]["time"] = timetable[index]["time"].replace("AM","").replace("PM","")
+                  timetable[index]["todayatt"] = "N/A"
               context = {
-            "timetable": timetable,
-            "content" : content
-                 }
-          except:
+              "timetable": timetable,
+              "content" : content
+              }
+              return render(request,'Attandance.html',context)
+            except:
+              context = {
+                "content":content
+              }
+              return render(request,'Attandance.html',context)
+          else:
             context = {
-              "content":content
-            }
-  
-          return render(request,'Attandance.html',context)
-        else:
-          context = {
-            "id" : "Incorrect Email or password"}
-          return render(request,'login.html',context)
-    except:
-      context = {
-        "id" : "Server Error try again later"}
-      return render(request,'login.html',context)
-    else:
-      context = {
-        "id" : "Incorrect Email or password"}
-      return render(request,'login.html',context)
+              "id" : "Incorrect Email or password"}
+            return render(request,'login.html',context)
+      except:
+        context = {
+          "id" : "Server Error try again later"}
+        return render(request,'login.html',context)
   else:
     return render(request,'login.html')
     # except:
