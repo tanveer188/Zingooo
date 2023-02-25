@@ -23,6 +23,26 @@
             <div class="navbar">
                 <img class="notes" src="static/images/logo.png" alt="" srcset="">
             </div>
+            <div class="HeroSection">
+                <div class="Allcard topCircle">
+                    <div class="circle-border" id="circle-border-all">
+                        <div class="circle">
+                            <p>{{AllAttandance.Allpercentage}}%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="AllAttSec">
+                    <div>
+                        <h4>Strike to 75</h4>
+                        <p class="cross">{{AllAttandance.AllHow75perc}}</p>
+                    </div>
+                    <div>
+                        <h4>Skipable Clases</h4>
+                        <p class="check">{{AllAttandance.AllSkipClasses}}</p>
+                    </div>
+                </div>
+
+            
             <div class="Shedule">
                 {% for row in timetable %}
                 <div class="sheitem">
@@ -31,7 +51,7 @@
                     <span class="check">{{row.todayatt}}</p>
                 </div>
                 {% endfor %}
-                
+                </div>
             </div>
     </header>
     </nav>
@@ -42,7 +62,7 @@
             <div class="card">
                 <div class="circle-border" id="circle-border{{forloop.counter}}">
                     <div class="circle">
-                        <p>{{i.percentage}}</p>
+                        <p>{{i.percentage}}%</p>
                     </div>
                 </div>
                 <p class="subName">{{i.subject}}</p>
@@ -121,6 +141,12 @@
        
       });
       {% endfor %}
+      let circle_border_all = document.getElementById("circle-border-all")
+      window.addEventListener("load",()=>{
+        circle_border_all.style.background = "conic-gradient(var(--primary) {{AllAttandance.border}}deg,#d9d9d970 {{AllAttandance.border}}deg"
+        
+      }
+      );
       </script>
 </body>
 
