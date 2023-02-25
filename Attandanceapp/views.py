@@ -31,6 +31,7 @@ def howPerce75Finder(total,present,percentage = 20):
       howPerce75 = j-1
       break
   return int(howPerce75)
+
 # Create your views here.
 def login(request):
   return render(request,"login.html")
