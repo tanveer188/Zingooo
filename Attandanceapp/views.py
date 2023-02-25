@@ -1,13 +1,16 @@
 from django.shortcuts import render,HttpResponse
 from datetime import datetime
 from datetime import date
+import math
 def convert24(time):
     # Parse the time string into a datetime object
     t = datetime.strptime(time, '%I:%M %p')
     # Format the datetime object into a 24-hour time string
     return t.strftime('%H:%M:%S')
  
-def SkipClassesFinder(total,present):
+def SkipClassesFinder(total,present,percentage = 90):
+  if(percentage < 75):
+    return 0
   for j in range(0,120):
     SkipClasses = ((present)/(total+j))*100
     if SkipClasses < 75 :
@@ -15,7 +18,9 @@ def SkipClassesFinder(total,present):
       break
   return int(SkipClasses)
 
-def howPerce75Finder(total,present):
+def howPerce75Finder(total,present,percentage = 20):
+  if(percentage > 75):
+    return 0
   for j in range(0,120):
     howPerce75 = ((present+j)/(total+j))*100
     if howPerce75 > 75 :
@@ -82,6 +87,8 @@ def submit(request):
               timetable.append(timetabletemp)
             timetable.sort(key = lambda x: datetime.strptime(x["startTimeHM"], "%X"))
             #working on individual subject
+            Alltotal = 0 
+            Allpresent = 0
             for i in y:
               Worry = True
               todayAttArrTemp = 0
@@ -190,11 +197,20 @@ def submit(request):
                 contextTemp["totalAtt"].append(contextmin)
               contextTemp["height"] = (((len(contextTemp["totalAtt"])+1)*2.57864375)+10.849625)*16
               content.append(contextTemp)
-  
+              #calculating total of total and present
+              Alltotal+= total
+              Allpresent+= present
+              Allpercentage = (Allpresent/Alltotal)*100
+              AllSkipClasses = SkipClassesFinder(Alltotal,Allpresent,Allpercentage)
+              AllHow75perc = howPerce75Finder(Alltotal,Allpresent,Allpercentage)
+            AllAttandance = {
+              "Allpercentage": (math.ceil(Allpercentage*100)/100),
+              "AllHow75perc":AllHow75perc,
+              "AllSkipClasses": AllSkipClasses,
+              "border":Allpercentage*3.6
+            }
+            #soeting rhe today Attadance taken
             todayAttArr.sort(key = lambda x: convert24(x["todayAttTime"]))
-            print(len(timetable))
-            print(len(todayAttArr))
-            print("\n\n\n")
             try:
               indexj= 0
               for index in range(0,len(timetable)+1):
@@ -208,12 +224,14 @@ def submit(request):
                   timetable[index]["time"] = timetable[index]["time"].replace("AM","").replace("PM","")
                   timetable[index]["todayatt"] = "N/A"
               context = {
+              "AllAttandance":AllAttandance,
               "timetable": timetable,
               "content" : content
               }
               return render(request,'Attandance.html',context)
             except:
               context = {
+                "AllAttandance":AllAttandance,
                 "content":content
               }
               return render(request,'Attandance.html',context)
