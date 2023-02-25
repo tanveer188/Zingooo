@@ -11,9 +11,11 @@ def convert24(time):
 def SkipClassesFinder(total,present,percentage = 90):
   if(percentage < 75):
     return 0
-  for j in range(0,120):
+  j=0
+  while True:
     SkipClasses = ((present)/(total+j))*100
-    if SkipClasses < 75 :
+    j+=1
+    if SkipClasses <= 75 :
       SkipClasses = j-1
       break
   return int(SkipClasses)
@@ -21,13 +23,14 @@ def SkipClassesFinder(total,present,percentage = 90):
 def howPerce75Finder(total,present,percentage = 20):
   if(percentage > 75):
     return 0
-  for j in range(0,120):
+  j=0
+  while True:
     howPerce75 = ((present+j)/(total+j))*100
-    if howPerce75 > 75 :
-      howPerce75 = j
+    j+=1
+    if howPerce75 >= 75 :
+      howPerce75 = j-1
       break
   return int(howPerce75)
-
 # Create your views here.
 def login(request):
   return render(request,"login.html")
@@ -200,9 +203,9 @@ def submit(request):
               #calculating total of total and present
               Alltotal+= total
               Allpresent+= present
-              Allpercentage = (Allpresent/Alltotal)*100
-              AllSkipClasses = SkipClassesFinder(Alltotal,Allpresent,Allpercentage)
-              AllHow75perc = howPerce75Finder(Alltotal,Allpresent,Allpercentage)
+            Allpercentage = (Allpresent/Alltotal)*100
+            AllSkipClasses = SkipClassesFinder(Alltotal,Allpresent,Allpercentage)
+            AllHow75perc = howPerce75Finder(Alltotal,Allpresent,Allpercentage)
             AllAttandance = {
               "Allpercentage": (math.ceil(Allpercentage*100)/100),
               "AllHow75perc":AllHow75perc,
