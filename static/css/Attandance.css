@@ -266,14 +266,14 @@
     .navbar > img {
       filter: invert(100%);
     }
-  .HeroSection{
-    color: white;
-    background: #252526;
-  }
-  .Shedule {
-    color: white;
-    background: #252526;
-  }
+    .HeroSection{
+      color: white;
+      background: #252526;
+    }
+    .Shedule {
+      color: white;
+      background: #252526;
+    }
     .container {
       background: #2d2d30;
     }
