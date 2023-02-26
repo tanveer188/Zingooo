@@ -1,7 +1,8 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
   }
   :root {
     --primary: #4393de;
@@ -16,8 +17,11 @@
     padding: 0.31rem;
     width: 100%;
     height: 3rem;
-    box-shadow: 0px 1px 10px #999;
+    -webkit-box-shadow: 0px 1px 10px #999;
+            box-shadow: 0px 1px 10px #999;
     position: fixed;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     top: 0;
     left: 0;
@@ -34,66 +38,118 @@
     border-radius: 0.7rem;
     height: 12rem;
     background: #F3F3F3;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     position: relative;
   }
   .topCircle{
     position: absolute;
     top: -43px;
     left: 50%;
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
   }
   .AllAttSec{
     width: 24rem;
     margin-top: 3rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;;
   }
   .AllAttSec > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
     height: 3.2rem;
   }
   .Shedule {
     margin-top: 1rem;
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
   .Shedule > .sheitem {
     background: inherit;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     gap: 3px;
   }
   .sheitem > span{
-    align-self: center
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center
   }
   
   .mainBox {
       margin: 1.2rem 0px 3.2rem 0rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    flex-grow: 0;
-    flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-flex: 0;
+        -ms-flex-positive: 0;
+            flex-grow: 0;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
     gap: 1rem;
   }
   .container {
+    -webkit-transition: height 0.7s ;
+    -o-transition: height 0.7s ;
     transition: height 0.7s ;
     background: #d9d9d970;
     width: 23.188rem;
     -webkit-height:23.188rem;
     min-height: 9.85rem;
     border-radius: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     overflow: hidden
   }
   .container:last-child{
@@ -103,15 +159,26 @@
     justify-self: flex-start;
     min-height: 9.85rem;
     width: 23.188rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
   
   .card {
     height: 125px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
   }
   .circle {
     text-align: center;
@@ -119,15 +186,27 @@
     height: 4.813rem;
     border-radius: 100%;
     background-color: #ffffff;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   
   .circle-border {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     text-align: center;
     width: 5.563rem;
     height: 5.563rem;
@@ -142,14 +221,22 @@
   .todayAtt {
     background: #d9d9d990;
     min-height: 32px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     border-radius: 0rem 0rem 1rem 1rem;
   }
   .icons {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
   }
   .icons > p:nth-child(2){
     padding: 0px 4px ;
@@ -162,6 +249,8 @@
   }
   
   .AttanTable{
+    -webkit-transition: height 0.7s, position 2s linear;
+    -o-transition: height 0.7s, position 2s linear;
     transition: height 0.7s, position 2s linear;
     margin-top: 0.7rem;
     visibility: hidden;
@@ -210,19 +299,32 @@
     padding: 0.31rem;
     width: 100%;
     height: 3rem;
-    box-shadow: 0px 1px 10px #999;
+    -webkit-box-shadow: 0px 1px 10px #999;
+            box-shadow: 0px 1px 10px #999;
     position: fixed;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
     bottom: 0;
     right: 0;
     z-index: 10;
   }
   .footer > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .ActivePage {
     color: var(--primary);
@@ -261,10 +363,12 @@
     }
     .navbar {
       background: #2d2d30;
-      box-shadow: 0px 1px 8px #252526 !important;
+      -webkit-box-shadow: 0px 1px 8px #252526 !important;
+              box-shadow: 0px 1px 8px #252526 !important;
     }
     .navbar > img {
-      filter: invert(100%);
+      -webkit-filter: invert(100%);
+              filter: invert(100%);
     }
     .HeroSection{
       color: white;
@@ -294,7 +398,8 @@
     }
     .footer {
       background: #2d2d30;
-      box-shadow: 0px 1px 8px #252526 !important;
+      -webkit-box-shadow: 0px 1px 8px #252526 !important;
+              box-shadow: 0px 1px 8px #252526 !important;
     }
   }
   
